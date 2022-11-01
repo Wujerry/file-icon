@@ -4,11 +4,12 @@ import 'src/data.dart';
 class FileIcon extends StatelessWidget {
   final String fileName;
   final double size;
+  final Colors color;
 
-  FileIcon({required String fileName, required this.size})
+  FileIcon({required String fileName, required this.size, required this.color})
       : this.fileName = fileName.toLowerCase();
 
-  static String getExtension({required String fileName, String? fallback}) {
+  String getExtension() {
     String key = '';
 
     if (iconSetMap.containsKey(fileName)) {
@@ -25,46 +26,38 @@ class FileIcon extends StatelessWidget {
       }
     }
 
-    if (key == '' && fallback != null) {
-      key = fallback;
+    if (key == '') {
+      key = '.txt';
     }
     return key;
   }
 
-  static IconData getIconData({required String fileName, String? fallback}) {
-    var key = getExtension(fileName: fileName, fallback: '.txt');
-    return _getIconDataForKey(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return getIcon();
   }
 
-  static IconData _getIconDataForKey({required String key}) {
-    return _getIconDataForCodePoint(iconSetMap[key]!.codePoint);
+  Icon getIcon() {
+    var key = getExtension();
+    return Icon(
+      _getIconDataForCodePoint(iconSetMap[key]!),
+      color: color,
+      size: size,
+    );
   }
 
   static IconData _getIconDataForCodePoint(int codePoint) {
     return IconData(codePoint, fontFamily: 'Seti', fontPackage: 'file_icon');
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return getIcon(fileName: this.fileName, size: this.size);
-  }
-
-  static Icon getIcon({required String fileName, required double size}) {
-    var key = getExtension(fileName: fileName, fallback: '.txt');
-    return Icon(
-      _getIconDataForKey(key: key),
-      color: Color(iconSetMap[key]!.color),
-      size: size,
-    );
-  }
-
   static IconData getFolderIconData() {
     return _getIconDataForCodePoint(0xE02F);
   }
 
-  static Icon getFolderIcon({required double size}) {
+  static Icon getFolderIcon({required double size, required Color color}) {
     return Icon(
       getFolderIconData(),
+      color: color,
       size: size,
     );
   }

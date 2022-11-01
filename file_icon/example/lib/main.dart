@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(title),
         actions: <Widget>[
           InkWell(
-            child: FileIcon('.html', size: 32),
+            child: FileIcon(fileName: '.html', size: 32, color: Colors.black26.value,),
             onTap: () {
               launch('https://github.com/pd4d10/file-icon');
             },
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[FileIcon(_input, size: _size)],
+                children: <Widget>[FileIcon(fileName: _input, size: _size, color: Colors.black26.value,)],
               ),
             ),
           ],
