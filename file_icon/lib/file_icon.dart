@@ -4,7 +4,7 @@ import 'src/data.dart';
 class FileIcon extends StatelessWidget {
   final String fileName;
   final double size;
-  final Colors color;
+  final Color color;
 
   FileIcon({required String fileName, required this.size, required this.color})
       : this.fileName = fileName.toLowerCase();
