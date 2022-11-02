@@ -51,7 +51,7 @@ class FileIcon extends StatelessWidget {
   }
 
   static IconData getFolderIconData() {
-    return _getIconDataForCodePoint(0xE02F);
+    return _getIconDataForCodePoint(0xe032);
   }
 
   static Icon getFolderIcon({required double size, required Color color}) {
